@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block customcss %}
+{% endblock customcss %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+社内sns
+</div>
+{% endblock header %}
+
+{% block content %}
+<div class="container">
+    {% for item in object_list %}
+    <div class="alert alert-success" role="alert">
+        <p>タイトル:{{item.title}}</p>
+        <p>投稿者:{{item.author}}</p>
+        <a href="#" class="btn btn-primary" role="button" aria-pressed="true">いいね</a>
+        <a href="#" class="btn btn-secondary" role="button" aria-pressed="true">既読</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
