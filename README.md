@@ -1,0 +1,2 @@
+# DjangoSampleSNS
+とりあえずsnsを作る
