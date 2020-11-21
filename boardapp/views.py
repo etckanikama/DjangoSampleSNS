@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from .models import BoardModel
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -23,6 +24,8 @@ def signupfunc(request):
             return render(request, 'signup.html', {'some':100})
     return render(request, 'signup.html', {'some':100})
 
+# デコレーター
+@login_required
 def loginfunc(request):
     if request.method == 'POST':
         # signup.html内の'username'
@@ -31,11 +34,12 @@ def loginfunc(request):
         user = authenticate(request, username=username2, password=password2)
         if user is not None:
             login(request, user)
-            return redirect('signup')
+            return redirect('list')
         else:
             return redirect('login')
     return render(request, 'login.html')
 
 def listfunc(request):
+    # boardModelのすべてのオブジェクトを取り出すことがデキル
     object_list = BoardModel.objects.all()
     return render(request, 'list.html', {'object_list':object_list})
